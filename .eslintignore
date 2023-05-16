@@ -1,0 +1,12 @@
+dist
+node_modules
+.gitignore
+.prettierignore
+yarn.lock
+yarn-error.log
+package-lock.json
+coverage
+pnpm-lock.yaml
+.eslintrc.cjs
+babel.config.js
+types/*

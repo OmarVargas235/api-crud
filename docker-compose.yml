@@ -1,0 +1,16 @@
+version: '3.1'
+services:
+  mongo:
+    container_name: prueba_tecnica
+    image: mongo:latest
+    environment:
+      - AUTH=yes
+      - MONGO_INITDB_DATABASE=prueba_tecnica
+      - MONGO_INITDB_ROOT_USERNAME=gootwork
+      - MONGO_INITDB_ROOT_PASSWORD=secret
+      - MONGO_INITDB_USER=gootwork
+      - MONGO_INITDB_PASSWORD=secret
+    volumes:
+      - ./mongodb/db:/data/db
+    ports:
+      - 27015:27017

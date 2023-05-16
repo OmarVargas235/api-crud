@@ -1,0 +1,33 @@
+{
+    "compilerOptions": {
+        "target": "es2016",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "lib": ["es2015"],
+        "module": "commonjs",
+        "rootDir": "./src",
+        "moduleResolution": "node",
+        "allowJs": true,
+        "sourceMap": true,
+        "outDir": "./dist",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "strictNullChecks": true,
+        "strictPropertyInitialization": true,
+        "noImplicitAny": true,
+        "skipLibCheck": true,
+        "baseUrl": ".",
+        "paths": {
+            "@auth/*": ["./src/auth/*"],
+            "@config/*": ["./src/config/*"],
+            "@main/*": ["./src/main/*"],
+            "@middlewares/*": ["./src/shared/middlewares/*"],
+            "@response/*": ["./src/shared/response/*"],
+            "@router/*": ["./src/shared/router/*"],
+        },
+        "typeRoots": ["./node_modules/@types"],
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist", "mongodb"]
+}
