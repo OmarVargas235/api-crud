@@ -13,10 +13,7 @@ export class HistoryRouter extends BaseRouter<
 
     routes(): void {
         this.router.post(
-            '/createUser',
-            (req: Request, resp: Response, next: NextFunction) => {
-                this.middleware.validateToken(req, resp, next);
-            },
+            '/createHistory',
             (req: Request, resp: Response, next: NextFunction) => {
                 this.middleware.historyValidator(req, resp, next);
             },
@@ -26,10 +23,7 @@ export class HistoryRouter extends BaseRouter<
         );
 
         this.router.post(
-            '/admin_list_active_users',
-            (req: Request, resp: Response, next: NextFunction) => {
-                this.middleware.validateToken(req, resp, next);
-            },
+            '/list_active_history',
             (req: Request, resp: Response) => {
                 void this.controller.getHistories(req, resp);
             }
