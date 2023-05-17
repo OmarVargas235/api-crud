@@ -27,7 +27,7 @@ Dependiendo de lo que esté haciendo, puede ser una buena idea incluir capturas 
         - `DB_PORT=27015`
         - `DB_HOST=localhost`
         - `DB_DATABASE=prueba_tecnica`
-        - `DB_USER=gootwork`
+        - `DB_USER=prueba_tecnica`
         - `DB_PASSWORD=secret`
         - `JWT_SECRET=`
         - `GOOGLE_CLIENT_ID=`

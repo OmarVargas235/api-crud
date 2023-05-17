@@ -1,18 +1,12 @@
 import bcrypt from 'bcrypt';
 import { type UserDTO } from '../dto/user.dto';
 import UserModel, { type UserEntity } from '../entities/user.entity';
+import { type Paginate } from '../interfaces';
 
 export class UserService {
     async findByEmail(email: string): Promise<UserEntity | null> {
         const user = await UserModel.findOne({ email });
         return user;
-    }
-
-    async findUserById(id: string): Promise<UserEntity> {
-        const user = await UserModel.findOne({ _id: id });
-        const userDB = user as UserEntity;
-
-        return userDB;
     }
 
     async createUser(body: UserDTO): Promise<UserEntity> {
@@ -23,5 +17,14 @@ export class UserService {
         const user = await new UserModel(newUser).save();
 
         return user;
+    }
+
+    async getUsers(query: Paginate, body: UserDTO): Promise<UserEntity> {
+        const users = await UserModel.find(body)
+            .limit(query.rowsPerPage)
+            .skip(query.page);
+        const usersDB = users as unknown as UserEntity;
+
+        return usersDB;
     }
 }

@@ -20,7 +20,6 @@ module.exports = {
                 alias: {
                     '@auth': './src/auth',
                     '@config': './src/config',
-                    '@main': './src/main',
                     '@middlewares': './src/shared/middlewares',
                     '@response': './src/shared/response',
                     '@router': './src/shared/router',

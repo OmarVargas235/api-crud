@@ -1,15 +1,9 @@
 import cors from 'cors';
 import express from 'express';
 import morgan from 'morgan';
-import passport from 'passport';
 import { ConfigServer } from '@config/config';
-import { UserRouter } from '@main/user/user.router';
-import { ProductRouter } from '@main/product/product.router';
-import { ShoppingRouter } from '@main/shoping/shopping.router';
-import { AuthRouter } from '@auth/auth.router';
-import { LoginGoogle } from '@auth/strategies/google.strategy';
-import { LoginFacebook } from '@auth/strategies/facebook.strategy';
-import { AuthStrategyRouter } from '@auth/authstrategy.router';
+import { UserRouter } from './user/user.router';
+// import { AuthRouter } from '@auth/auth.router';
 
 class ServerBootstrap extends ConfigServer {
     public app: express.Application = express();
@@ -22,27 +16,16 @@ class ServerBootstrap extends ConfigServer {
         this.app.use(express.urlencoded({ extended: true }));
         this.app.use(morgan('dev'));
         this.app.use(cors());
-        this.app.use(passport.initialize());
 
-        this.passportUse();
         void this.dbConnect();
 
         this.app.use('/api', this.routers());
         this.listen();
     }
 
-    passportUse(): unknown[] {
-        return [new LoginGoogle().use, new LoginFacebook().use];
-    }
-
     routers(): express.Router[] {
-        return [
-            new UserRouter().router,
-            new ProductRouter().router,
-            new ShoppingRouter().router,
-            new AuthRouter().router,
-            new AuthStrategyRouter().router
-        ];
+        // return [new AuthRouter().router];
+        return [new UserRouter().router];
     }
 
     async dbConnect(): Promise<void> {

@@ -9,16 +9,46 @@ export class UserRouter extends BaseRouter<UserController, UserMiddleware> {
     }
 
     routes(): void {
-        this.router.get('/user/:id', (req: Request, resp: Response) => {
-            void this.controller.getUserById(req, resp);
-        });
         this.router.post(
-            '/createUser',
+            '/createUserWithOutToken',
             (req: Request, resp: Response, next: NextFunction) => {
                 this.middleware.userValidator(req, resp, next);
             },
             (req: Request, resp: Response) => {
                 void this.controller.createUser(req, resp);
+            }
+        );
+
+        this.router.post(
+            '/createUser',
+            (req: Request, resp: Response, next: NextFunction) => {
+                this.middleware.validateToken(req, resp, next);
+            },
+            (req: Request, resp: Response, next: NextFunction) => {
+                this.middleware.userValidator(req, resp, next);
+            },
+            (req: Request, resp: Response) => {
+                void this.controller.createUser(req, resp);
+            }
+        );
+
+        this.router.post(
+            '/admin_list_active_users',
+            (req: Request, resp: Response, next: NextFunction) => {
+                this.middleware.validateToken(req, resp, next);
+            },
+            (req: Request, resp: Response) => {
+                void this.controller.getUsers(req, resp);
+            }
+        );
+
+        this.router.delete(
+            '/delete_users/:id',
+            (req: Request, resp: Response, next: NextFunction) => {
+                this.middleware.validateToken(req, resp, next);
+            },
+            (req: Request, resp: Response) => {
+                void this.controller.deleteUser(req, resp);
             }
         );
     }

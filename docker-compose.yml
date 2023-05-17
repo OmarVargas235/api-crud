@@ -6,11 +6,11 @@ services:
     environment:
       - AUTH=yes
       - MONGO_INITDB_DATABASE=prueba_tecnica
-      - MONGO_INITDB_ROOT_USERNAME=gootwork
+      - MONGO_INITDB_ROOT_USERNAME=prueba_tecnica
       - MONGO_INITDB_ROOT_PASSWORD=secret
-      - MONGO_INITDB_USER=gootwork
+      - MONGO_INITDB_USER=prueba_tecnica
       - MONGO_INITDB_PASSWORD=secret
     volumes:
       - ./mongodb/db:/data/db
     ports:
-      - 27015:27017
+      - 27014:27017
