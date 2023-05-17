@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src --extensions \".ts,.js\" --out-dir dist --copy-files",
-    "start": "tsc && npm run build",
     "start:dev": "ts-node-dev -r tsconfig-paths/register --ignore-watch node_modules --files ./src/index.ts",
     "lint": "eslint --fix . --ext .ts,.tsx",
     "format": "prettier --write .",

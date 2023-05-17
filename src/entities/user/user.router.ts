@@ -43,7 +43,7 @@ export class UserRouter extends BaseRouter<UserController, UserMiddleware> {
         );
 
         this.router.delete(
-            '/delete_users/:id',
+            '/admin_delete_user',
             (req: Request, resp: Response, next: NextFunction) => {
                 this.middleware.validateToken(req, resp, next);
             },

@@ -41,7 +41,7 @@ export class AuthService extends ConfigServer {
         const data = await this.validateUser(user.email, user.password);
 
         const payload = {
-            role: data?.role,
+            // role: data?.role,
             sub: data?._id
         };
 
@@ -55,11 +55,5 @@ export class AuthService extends ConfigServer {
                     : '',
             user: data
         };
-    }
-
-    public async validateEmail(email: string): Promise<UserEntity | null> {
-        const data = await this.userService.findByEmail(email);
-
-        return data;
     }
 }

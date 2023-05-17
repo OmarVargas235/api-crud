@@ -4,6 +4,11 @@ import UserModel, { type UserEntity } from '../entities/user.entity';
 import { type Paginate } from '../interfaces';
 
 export class UserService {
+    async findById(id: string): Promise<UserEntity | null> {
+        const user = await UserModel.findOne({ _id: id });
+        return user;
+    }
+
     async findByEmail(email: string): Promise<UserEntity | null> {
         const user = await UserModel.findOne({ email });
         return user;
@@ -26,5 +31,9 @@ export class UserService {
         const usersDB = users as unknown as UserEntity;
 
         return usersDB;
+    }
+
+    async deleteUser(id: string): Promise<void> {
+        await UserModel.deleteOne({ _id: id });
     }
 }

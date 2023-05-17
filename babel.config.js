@@ -23,6 +23,7 @@ module.exports = {
                     '@middlewares': './src/shared/middlewares',
                     '@response': './src/shared/response',
                     '@router': './src/shared/router',
+                    '@main': './src/entities',
                 }
             }
         ]

@@ -2,8 +2,8 @@ import cors from 'cors';
 import express from 'express';
 import morgan from 'morgan';
 import { ConfigServer } from '@config/config';
-import { UserRouter } from './user/user.router';
-// import { AuthRouter } from '@auth/auth.router';
+import { UserRouter } from '@main/user/user.router';
+import { AuthRouter } from '@auth/auth.router';
 
 class ServerBootstrap extends ConfigServer {
     public app: express.Application = express();
@@ -24,8 +24,7 @@ class ServerBootstrap extends ConfigServer {
     }
 
     routers(): express.Router[] {
-        // return [new AuthRouter().router];
-        return [new UserRouter().router];
+        return [new UserRouter().router, new AuthRouter().router];
     }
 
     async dbConnect(): Promise<void> {

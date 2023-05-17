@@ -46,8 +46,6 @@ export class UserController {
                 );
             }
 
-            req.body.password = null;
-
             try {
                 const data = await this.userService.getUsers(
                     {
@@ -75,18 +73,16 @@ export class UserController {
 
     public async deleteUser(req: Request, resp: Response): Promise<void> {
         try {
-            const isEmail = await this.userService.findByEmail(req.body.email);
+            const id = req.query.id as string;
+            const isUser = await this.userService.findById(id);
 
-            if (isEmail != null) {
-                this.httpResponse.BadRequest(
-                    resp,
-                    'Ya existe un usuario con ese correo'
-                );
+            if (isUser == null) {
+                this.httpResponse.BadRequest(resp, 'No existe este usuario');
                 return undefined;
             }
 
-            await this.userService.createUser(req.body);
-            this.httpResponse.Ok(resp, 'Usuario registrado con exito');
+            await this.userService.deleteUser(id);
+            this.httpResponse.Ok(resp, 'Usuario eliminado con exito');
         } catch (err) {
             this.httpResponse.Error(resp, err);
         }
