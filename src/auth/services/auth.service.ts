@@ -41,7 +41,7 @@ export class AuthService extends ConfigServer {
         const data = await this.validateUser(user.email, user.password);
 
         const payload = {
-            // role: data?.role,
+            role: data?.role,
             sub: data?._id
         };
 

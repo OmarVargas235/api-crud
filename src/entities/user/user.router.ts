@@ -15,6 +15,7 @@ export class UserRouter extends BaseRouter<UserController, UserMiddleware> {
                 this.middleware.userValidator(req, resp, next);
             },
             (req: Request, resp: Response) => {
+                req.body.role = 'ADMIN';
                 void this.controller.createUser(req, resp);
             }
         );
@@ -23,6 +24,9 @@ export class UserRouter extends BaseRouter<UserController, UserMiddleware> {
             '/createUser',
             (req: Request, resp: Response, next: NextFunction) => {
                 this.middleware.validateToken(req, resp, next);
+            },
+            (req: Request, resp: Response, next: NextFunction) => {
+                this.middleware.checkAdminRole(req, resp, next);
             },
             (req: Request, resp: Response, next: NextFunction) => {
                 this.middleware.userValidator(req, resp, next);
@@ -46,6 +50,9 @@ export class UserRouter extends BaseRouter<UserController, UserMiddleware> {
             '/admin_delete_user',
             (req: Request, resp: Response, next: NextFunction) => {
                 this.middleware.validateToken(req, resp, next);
+            },
+            (req: Request, resp: Response, next: NextFunction) => {
+                this.middleware.checkAdminRole(req, resp, next);
             },
             (req: Request, resp: Response) => {
                 void this.controller.deleteUser(req, resp);
