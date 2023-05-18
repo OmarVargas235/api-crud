@@ -25,7 +25,11 @@ export class UserService {
     }
 
     async edituser(id: string, body: UserDTO): Promise<void> {
-        await UserModel.findByIdAndUpdate(id, body, { new: true });
+        const newUser = body;
+        const hash = await bcrypt.hash(newUser.password, 10);
+
+        newUser.password = hash;
+        await UserModel.findByIdAndUpdate(id, newUser, { new: true });
     }
 
     async getUsers(query: Paginate, body: UserDTO): Promise<UserEntity> {

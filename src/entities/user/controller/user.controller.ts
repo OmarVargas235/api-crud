@@ -37,7 +37,7 @@ export class UserController {
         try {
             const isEmail = await this.userService.findByEmail(req.body.email);
 
-            if (isEmail != null) {
+            if (isEmail == null) {
                 this.httpResponse.BadRequest(
                     resp,
                     'No existe un usuario con ese correo'
