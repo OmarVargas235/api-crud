@@ -27,7 +27,10 @@ export class HistoryController {
             }
 
             await this.historyService.createHistory(req.body);
-            this.httpResponse.Ok(resp, 'Usuario registrado con exito');
+            this.httpResponse.Ok(
+                resp,
+                'Usuario guardado en historial con exito'
+            );
         } catch (err) {
             this.httpResponse.Error(resp, err);
         }

@@ -5,14 +5,14 @@ import { HistoryDTO } from '../dto/history.dto';
 
 export class HistoryMiddleware extends SharedMiddleware {
     historyValidator(req: Request, resp: Response, next: NextFunction): void {
-        const { name, lastName, email, password, company } = req.body;
+        const { name, lastName, email, role, company } = req.body;
 
         const valid = new HistoryDTO();
 
         valid.name = name;
         valid.lastName = lastName;
         valid.email = email;
-        valid.password = password;
+        valid.role = role;
         valid.company = company;
 
         void validate(valid).then((err) => {

@@ -24,6 +24,10 @@ export class UserService {
         return user;
     }
 
+    async edituser(id: string, body: UserDTO): Promise<void> {
+        await UserModel.findByIdAndUpdate(id, body, { new: true });
+    }
+
     async getUsers(query: Paginate, body: UserDTO): Promise<UserEntity> {
         const users = await UserModel.find(body)
             .limit(query.rowsPerPage)

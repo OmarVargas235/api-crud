@@ -58,5 +58,18 @@ export class UserRouter extends BaseRouter<UserController, UserMiddleware> {
                 void this.controller.deleteUser(req, resp);
             }
         );
+
+        this.router.put(
+            '/editUser',
+            (req: Request, resp: Response, next: NextFunction) => {
+                this.middleware.validateToken(req, resp, next);
+            },
+            (req: Request, resp: Response, next: NextFunction) => {
+                this.middleware.checkAdminRole(req, resp, next);
+            },
+            (req: Request, resp: Response) => {
+                void this.controller.edituser(req, resp);
+            }
+        );
     }
 }

@@ -31,6 +31,27 @@ export class UserController {
         }
     }
 
+    public async edituser(req: Request, resp: Response): Promise<void> {
+        const id = req.query.id as string;
+
+        try {
+            const isEmail = await this.userService.findByEmail(req.body.email);
+
+            if (isEmail != null) {
+                this.httpResponse.BadRequest(
+                    resp,
+                    'No existe un usuario con ese correo'
+                );
+                return undefined;
+            }
+
+            await this.userService.edituser(id, req.body);
+            this.httpResponse.Ok(resp, 'Usuario editado con exito');
+        } catch (err) {
+            this.httpResponse.Error(resp, err);
+        }
+    }
+
     public async getUsers(req: Request, resp: Response): Promise<unknown> {
         try {
             const query = req.query as unknown as Paginate;

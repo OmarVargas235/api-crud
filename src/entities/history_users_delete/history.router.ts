@@ -15,6 +15,9 @@ export class HistoryRouter extends BaseRouter<
         this.router.post(
             '/createHistory',
             (req: Request, resp: Response, next: NextFunction) => {
+                this.middleware.validateToken(req, resp, next);
+            },
+            (req: Request, resp: Response, next: NextFunction) => {
                 this.middleware.checkAdminRole(req, resp, next);
             },
             (req: Request, resp: Response, next: NextFunction) => {
@@ -27,6 +30,9 @@ export class HistoryRouter extends BaseRouter<
 
         this.router.post(
             '/list_active_history',
+            (req: Request, resp: Response, next: NextFunction) => {
+                this.middleware.validateToken(req, resp, next);
+            },
             (req: Request, resp: Response, next: NextFunction) => {
                 this.middleware.checkAdminRole(req, resp, next);
             },

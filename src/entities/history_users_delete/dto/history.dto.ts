@@ -1,5 +1,6 @@
 import { IsNotEmpty } from 'class-validator';
 import { BaseDTO } from '@config/base.dto';
+import { RoleType } from '@main/user/dto/user.dto';
 
 export class HistoryDTO extends BaseDTO {
     @IsNotEmpty()
@@ -15,5 +16,5 @@ export class HistoryDTO extends BaseDTO {
     email!: string;
 
     @IsNotEmpty()
-    password!: string;
+    role!: RoleType;
 }
