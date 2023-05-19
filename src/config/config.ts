@@ -33,11 +33,13 @@ export abstract class ConfigServer {
     }
 
     public async connectMongoDB(): Promise<void> {
-        const url = `mongodb://${this.getEnvironment('DB_USER') ?? ''}:${
+        const urlLocal = `mongodb://${this.getEnvironment('DB_USER') ?? ''}:${
             this.getEnvironment('DB_PASSWORD') ?? ''
         }@${this.getEnvironment('DB_HOST') ?? ''}:${
             this.getEnvironment('DB_PORT') ?? ''
         }/${this.getEnvironment('DB_DATABASE') ?? ''}?authSource=admin`;
+
+        const url = this.getEnvironment('DB_MONGO_ATLAS') ?? urlLocal;
 
         await mongoose.connect(url);
     }
