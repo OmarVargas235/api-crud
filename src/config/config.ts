@@ -39,8 +39,7 @@ export abstract class ConfigServer {
             this.getEnvironment('DB_PORT') ?? ''
         }/${this.getEnvironment('DB_DATABASE') ?? ''}?authSource=admin`;
 
-        const url = this.getEnvironment('DB_MONGO_ATLAS') ?? urlLocal;
-
+        const url = this.getEnvironment('MONGO_URL') ?? urlLocal;
         await mongoose.connect(url);
     }
 }
