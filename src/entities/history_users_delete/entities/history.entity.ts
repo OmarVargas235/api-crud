@@ -16,6 +16,7 @@ export class HistoryEntity extends BaseEntity {
     email!: string;
 
     @prop({
+        type: String,
         enum: RoleType,
         nullable: false
     })

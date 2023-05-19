@@ -19,6 +19,7 @@ export class UserEntity extends BaseEntity {
     password!: string;
 
     @prop({
+        type: String,
         enum: RoleType,
         nullable: false,
         default: RoleType.USER
